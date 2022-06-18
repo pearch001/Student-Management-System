@@ -6,10 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
@@ -23,5 +22,9 @@ public class Course {
     private Long id;
     private String courseTitle;
     private String courseDescription;
+
+    private Tutor tutor;
+    @OneToMany
+    private Collection<Curriculum> curricula = new ArrayList<>();
 
 }
