@@ -22,8 +22,8 @@ public class Course {
     private Long id;
     private String courseTitle;
     private String courseDescription;
-
-    private Tutor tutor;
+    @OneToMany
+    private Collection<Tutor> tutor = new ArrayList<>();
     @OneToMany
     private Collection<Curriculum> curricula = new ArrayList<>();
 
