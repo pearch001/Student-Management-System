@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -41,44 +43,61 @@ public class Student implements UserDetails {
     @OneToMany
     @JoinColumn(name = "course_id")
     private Collection<Course> courses = new ArrayList<>();
-
     @CreationTimestamp
     private Date dateCreated;
     @UpdateTimestamp
     private Date dateModified;
 
+    public Student(String firstName, String lastName,
+                   String email, String phone,
+                   String gender, String password,
+                   Boolean locked, Boolean enabled,
+                   AppUser appUser, Collection<Course> courses) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.password = password;
+        this.locked = locked;
+        this.enabled = enabled;
+        this.appUser = appUser;
+        this.courses = courses;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(appUser.name());
+        return Collections.singletonList(simpleGrantedAuthority);
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return email;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return !locked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return enabled;
     }
 }
