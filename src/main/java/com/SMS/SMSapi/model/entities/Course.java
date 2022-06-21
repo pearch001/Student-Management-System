@@ -22,9 +22,9 @@ public class Course {
     private Long id;
     private String courseTitle;
     private String courseDescription;
-    @OneToMany
-    private Collection<Tutor> tutor = new ArrayList<>();
-    @OneToMany
-    private Collection<Curriculum> curricula = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "tutor_id")
+    private Tutor tutor;
+
 
 }

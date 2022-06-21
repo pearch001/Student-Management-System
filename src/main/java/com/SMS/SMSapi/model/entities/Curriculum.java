@@ -6,10 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
@@ -24,4 +23,7 @@ public class Curriculum {
     private String subTitle;
     private String subTitleDescription;
     private String videoUrl;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 }
