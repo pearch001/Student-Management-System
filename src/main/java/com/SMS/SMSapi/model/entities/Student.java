@@ -10,6 +10,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -29,6 +31,9 @@ public class Student {
     private String email;
     private String phone;
     private String gender;
+    @OneToMany
+    @JoinColumn(name = "course_id")
+    private Collection<Course> courses = new ArrayList<>();
 
     @CreationTimestamp
     private Date dateCreated;
