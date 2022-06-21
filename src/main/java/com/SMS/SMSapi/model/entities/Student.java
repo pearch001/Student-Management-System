@@ -39,6 +39,7 @@ public class Student implements UserDetails {
     private String password;
     private Boolean locked;
     private Boolean enabled;
+    @Enumerated(EnumType.STRING)
     private AppUser appUser;
     @OneToMany
     @JoinColumn(name = "course_id")
