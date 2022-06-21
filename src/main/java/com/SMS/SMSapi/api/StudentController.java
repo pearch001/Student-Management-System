@@ -1,9 +1,11 @@
 package com.SMS.SMSapi.api;
 
+import com.SMS.SMSapi.common.ApiResponse;
 import com.SMS.SMSapi.model.Dto.StudentDto;
 import com.SMS.SMSapi.services.StudentServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,11 +24,11 @@ public class StudentController {
     StudentServiceImpl studentService;
 
     @PostMapping(value="/signup")
-    public ResponseEntity<StudentDto> signupUser(@RequestBody StudentDto studentDto){
+    public ResponseEntity<ApiResponse> signupUser(@RequestBody StudentDto studentDto){
         //Creating URI that would be passed into the response entity .created method
         log.info("hey");
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/users/signup/user").toUriString());
-
-        return ResponseEntity.created(uri).body(studentService.saveUser(studentDto));
+        studentService.saveUser(studentDto)
+        return new ResponseEntity<>(new ApiResponse(true,"Student registered"), HttpStatus.ACCEPTED);
     }
 }
