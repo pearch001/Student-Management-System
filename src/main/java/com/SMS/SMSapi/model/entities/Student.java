@@ -52,18 +52,15 @@ public class Student implements UserDetails {
     public Student(String firstName, String lastName,
                    String email, String phone,
                    String gender, String password,
-                   Boolean locked, Boolean enabled,
-                   AppUser appUser, Collection<Course> courses) {
+                   AppUser appUser) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.gender = gender;
         this.password = password;
-        this.locked = locked;
-        this.enabled = enabled;
         this.appUser = appUser;
-        this.courses = courses;
+
     }
 
     @Override

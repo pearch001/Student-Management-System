@@ -24,19 +24,14 @@ public class StudentController {
     @Autowired
     StudentServiceImpl studentService;
 
-    @Autowired
-    EmailValidator emailValidator
 
     @PostMapping(value="/signup")
     public ResponseEntity<ApiResponse> signupUser(@RequestBody StudentDto studentDto){
         //Creating URI that would be passed into the response entity .created method
         log.info("hey");
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/users/signup/user").toUriString());
-        Boolean isValidEmail = emailValidator.test(studentDto.getEmail());
-        if (!isValidEmail){
 
-        }
-        studentService.saveUser(studentDto)
+        studentService.saveStudent(studentDto);
         return new ResponseEntity<>(new ApiResponse(true,"Student registered"), HttpStatus.ACCEPTED);
     }
 }
