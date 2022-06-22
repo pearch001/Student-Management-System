@@ -28,10 +28,10 @@ public class ConfirmationToken {
     @JoinColumn(name = "student_id",nullable = false)
     private Student student;
 
-    public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiredAt, LocalDateTime confirmedAt) {
+    public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiredAt) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiredAt = expiredAt;
-        this.confirmedAt = confirmedAt;
+
     }
 }
