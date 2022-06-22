@@ -37,8 +37,8 @@ public class Student implements UserDetails {
     private String phone;
     private String gender;
     private String password;
-    private Boolean locked;
-    private Boolean enabled;
+    private Boolean locked = false;
+    private Boolean enabled = false;
     @Enumerated(EnumType.STRING)
     private AppUser appUser;
     @OneToMany

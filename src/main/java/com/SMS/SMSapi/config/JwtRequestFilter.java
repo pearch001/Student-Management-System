@@ -1,7 +1,7 @@
 package com.SMS.SMSapi.config;
 
+import com.SMS.SMSapi.services.StudentServiceImpl;
 import com.SMS.SMSapi.utils.JwtTokenUtil;
-import com.SMS.SMSapi.services.User_Service;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +20,7 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
-    private User_Service userService;
+    private StudentServiceImpl userService;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;

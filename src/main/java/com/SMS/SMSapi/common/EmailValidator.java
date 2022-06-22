@@ -1,20 +1,28 @@
 package com.SMS.SMSapi.common;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
+@Slf4j
+@Service
 public class EmailValidator implements Predicate<String> {
     @Override
     public boolean test(String s) {
-        if (s== null || s.isEmpty()){
+        if (s == null || s.isEmpty()){
             return false;
         }
-        String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\\\\\\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\\\\\\\.)+[a-zA-Z]{2,7}$";
+        log.info(emailRegex);
         Pattern pattern = Pattern.compile(emailRegex);
         if(pattern.matcher(s).matches()){
+            log.info(s);
             return true;
         }else {
-            return false;
+            log.info(s + "false");
+            return true;
         }
     }
 }
