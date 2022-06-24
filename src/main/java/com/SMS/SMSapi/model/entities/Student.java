@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Builder
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

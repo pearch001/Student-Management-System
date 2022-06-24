@@ -14,7 +14,7 @@ public class EmailValidator implements Predicate<String> {
         if (s == null || s.isEmpty()){
             return false;
         }
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\\\\\\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\\\\\\\.)+[a-zA-Z]{2,7}$";
+        String emailRegex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         log.info(emailRegex);
         Pattern pattern = Pattern.compile(emailRegex);
         if(pattern.matcher(s).matches()){
@@ -22,7 +22,7 @@ public class EmailValidator implements Predicate<String> {
             return true;
         }else {
             log.info(s + "false");
-            return true;
+            return false;
         }
     }
 }
